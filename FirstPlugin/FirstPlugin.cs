@@ -50,7 +50,10 @@ namespace FirstPlugin
 
             public static void Cycle()
             {
-                float deltatime = (Single)DateTime.Now.Subtract(LastCycle).TotalSeconds;
+                DateTime tickTick = DateTime.Now;
+                float deltatime = (Single)tickTick.Subtract(LastCycle).TotalSeconds;
+                LastCycle = tickTick;
+                
                 for (var i = 0; i < ListTimers.Count; i++)
                 {
                     ListTimers[i].Interval -= deltatime;
