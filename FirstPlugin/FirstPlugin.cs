@@ -18,7 +18,6 @@ namespace FirstPlugin
         
         static void Main(string[] args)
         {
-            Game.OnStart += GameOnOnStart;
             Game.OnIngameUpdate += GameOnOnIngameUpdate;
 
         }
@@ -35,36 +34,17 @@ namespace FirstPlugin
 
         private static void OnGameStatusChange(GameState newGameState)
         {
-            
-        }
-
-        private static void GameOnOnStart(EventArgs args)
-        {
-            GameChat.SendMessage("GameStat: " + Game.GameState);
-            CustomTimer.CreateTimer(() =>
+            if (newGameState == GameState.PreGame)
             {
-                GameChat.SendMessage("Начинается движуха(By ~ https://vk.com/id223225363)");
-                GameChat.SendMessage("Информация о игроках Radiant: ");
-                for (var i = 0; i < Players.Radiant.Count; i++)
-                {
-                    uint steamid = Players.Radiant[i].PlayerSteamId;
-                    string name = Players.Radiant[i].Name;
-                    if (steamid != 0)
-                    {
-                        DotaBuffPlayer.Parse(steamid, player =>
-                        {
-                            GameChat.SendMessage($"[{name}]: Уровень игры: {player.Grade}; Винрейт: {player.WinRate}; Роль: {player.Role}");
-                        });
-                    }
-                }
-
+                GameChat.SendMessage("GameStat: " + Game.GameState);
                 CustomTimer.CreateTimer(() =>
                 {
-                    GameChat.SendMessage("Информация о игроках Dire: ");
-                    for (var i = 0; i < Players.Dire.Count; i++)
+                    GameChat.SendMessage("Начинается движуха(By ~ vk.com id223225363)");
+                    GameChat.SendMessage("Информация о игроках Radiant: ");
+                    for (var i = 0; i < Players.Radiant.Count; i++)
                     {
-                        uint steamid = Players.Dire[i].PlayerSteamId;
-                        string name = Players.Dire[i].Name;
+                        uint steamid = Players.Radiant[i].PlayerSteamId;
+                        string name = Players.Radiant[i].Name;
                         if (steamid != 0)
                         {
                             DotaBuffPlayer.Parse(steamid, player =>
@@ -73,8 +53,25 @@ namespace FirstPlugin
                             });
                         }
                     }
-                }, 10f);
-            }, 5f);
+
+                    CustomTimer.CreateTimer(() =>
+                    {
+                        GameChat.SendMessage("Информация о игроках Dire: ");
+                        for (var i = 0; i < Players.Dire.Count; i++)
+                        {
+                            uint steamid = Players.Dire[i].PlayerSteamId;
+                            string name = Players.Dire[i].Name;
+                            if (steamid != 0)
+                            {
+                                DotaBuffPlayer.Parse(steamid, player =>
+                                {
+                                    GameChat.SendMessage($"[{name}]: Уровень игры: {player.Grade}; Винрейт: {player.WinRate}; Роль: {player.Role}");
+                                });
+                            }
+                        }
+                    }, 10f);
+                }, 5f);
+            }
         }
     }
 }
