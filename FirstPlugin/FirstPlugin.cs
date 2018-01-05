@@ -26,7 +26,8 @@ namespace FirstPlugin
 
         private static void GameOnOnFireEvent(FireEventEventArgs args)
         {
-            Game.ExecuteCommand("say GameOnOnFireEvent");
+            
+            Game.ExecuteCommand("say GameOnOnFireEvent => " + args.GameEvent.Name);
         }
 
         private static void GameOnOnMessage(MessageEventArgs args)
