@@ -1,5 +1,6 @@
 ﻿using System;
 using Ensage;
+using Ensage.Common.Objects;
 using Ensage.SDK.Service;
 
 using SharpDX;
@@ -26,8 +27,17 @@ namespace FirstPlugin
 
         private static void GameOnOnFireEvent(FireEventEventArgs args)
         {
-            
             Game.ExecuteCommand("say GameOnOnFireEvent => " + args.GameEvent.Name);
+            switch (args.GameEvent.Name)
+            {
+                case "dota_game_state_change":
+                    Game.ExecuteCommand("say Status: " + Game.GameState);
+                    break;
+                case "dota_portrait_unit_stats_changed":
+                    Game.ExecuteCommand("say Игроки в сессии:");
+                    Game.ExecuteCommand("say [0] => [" + Players.All[0].PlayerSteamId + " / " + Players.All[0].Name + "]");
+                    break;
+            }
         }
 
         private static void GameOnOnMessage(MessageEventArgs args)
