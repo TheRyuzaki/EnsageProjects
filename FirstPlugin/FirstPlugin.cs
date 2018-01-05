@@ -21,7 +21,7 @@ namespace FirstPlugin
 
         private static void GameOnOnGcMessageReceive(GCMessageEventArgs args)
         {
-            Game.ExecuteCommand("say GameOnOnGcMessageReceive");
+            Game.ExecuteCommand("say GameOnOnGcMessageReceive"); 
         }
 
         private static void GameOnOnFireEvent(FireEventEventArgs args)
