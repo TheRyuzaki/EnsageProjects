@@ -15,14 +15,8 @@ namespace FirstPlugin
             Game.OnMessage += GameOnOnMessage;
             Game.OnFireEvent += GameOnOnFireEvent;
             Game.OnGCMessageReceive += GameOnOnGcMessageReceive;
-            Game.OnWndProc += GameOnOnWndProc;
             Game.PrintMessage("Hello world");
             
-        }
-
-        private static void GameOnOnWndProc(WndEventArgs args)
-        {
-            Game.ExecuteCommand("say GameOnOnWndProc");
         }
 
         private static void GameOnOnGcMessageReceive(GCMessageEventArgs args)
