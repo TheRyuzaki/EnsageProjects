@@ -21,19 +21,19 @@ namespace FirstPlugin
 
         private static void GameOnOnGcMessageReceive(GCMessageEventArgs args)
         {
-            Game.PrintMessage("[TheRyuzaki] GameOnOnGcMessageReceive"); 
+            Game.PrintMessage("[TheRyuzaki] GameOnOnGcMessageReceive2"); 
         }
 
         private static void GameOnOnFireEvent(FireEventEventArgs args)
         {
-            Game.PrintMessage("[TheRyuzaki] GameOnOnFireEvent => " + args.GameEvent.Name);
+            Game.PrintMessage("[TheRyuzaki] GameOnOnFireEvent2 => " + args.GameEvent.Name);
             switch (args.GameEvent.Name)
             {
                 case "dota_game_state_change":
                     switch (Game.GameState)
                     {
                         case GameState.GameInProgress:
-                            Game.PrintMessage("[TheRyuzaki] GameInProgress");
+                            Game.PrintMessage("[TheRyuzaki] GameInProgress2");
                             Game.ExecuteCommand("say Игроки в сессии:");
                             for (var i = 0; i < Players.All.Count; i++)
                             {
@@ -49,7 +49,7 @@ namespace FirstPlugin
 
         private static void GameOnOnMessage(MessageEventArgs args)
         {
-            Game.PrintMessage("[TheRyuzaki] GameOnOnMessage");
+            Game.PrintMessage("[TheRyuzaki] GameOnOnMessage2");
         }
 
         private static void GameOnOnIngameUpdate(EventArgs args)
@@ -59,7 +59,7 @@ namespace FirstPlugin
 
         private static void GameOnOnStart(EventArgs args)
         {
-            Game.PrintMessage("[TheRyuzaki] GameOnOnStart");
+            Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
             Game.ExecuteCommand("say Игроки в сессии:");
             for (var i = 0; i < Players.All.Count; i++)
             {
