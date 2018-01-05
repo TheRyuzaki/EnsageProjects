@@ -36,7 +36,6 @@ namespace FirstPlugin
         {
             if (newGameState == GameState.PreGame)
             {
-                GameChat.SendMessage("GameStat: " + Game.GameState);
                 CustomTimer.CreateTimer(() =>
                 {
                     GameChat.SendMessage("Начинается движуха(By ~ vk.com id223225363)");
