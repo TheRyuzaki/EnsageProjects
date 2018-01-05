@@ -27,44 +27,54 @@ namespace FirstPlugin
             {
                 this.Interval = interval;
                 this.Callback = callback;
-                ListTimers.Add(this);
             }
 
             public static CustomTimer CreateTimer(Action callback, float interval)
             {
-                return new CustomTimer(interval, callback);
+                CustomTimer timer = new CustomTimer(interval, callback);
+                ListTimers.Add(timer);
+                return timer;
             }
 
-            public static void DestroyTimer(CustomTimer timer)
+            public static void DestroyTimer(CustomTimer timer, bool execute = false)
             {
                 if (ListTimers.Contains(timer))
+                {
+                    if (execute == true)
+                        timer.Callback();
                     ListTimers.Remove(timer);
+                }
             }
 
             public static void Cycle()
             {
                 float deltatime = (Single)DateTime.Now.Subtract(LastCycle).TotalSeconds;
-                
                 for (var i = 0; i < ListTimers.Count; i++)
                 {
                     ListTimers[i].Interval -= deltatime;
                     if (ListTimers[i].Interval <= 0)
                     {
-                        ListTimers[i]?.Callback();
+                        try
+                        {
+                            ListTimers[i].Callback();
+                        }
+                        catch (Exception ex)
+                        {
+                            Game.PrintMessage("[TheRyuzaki]: Error from timer: " + ex.Message);
+                        }
                         listRemove.Add(ListTimers[i]);
                     }
                 }
-
 
                 if (listRemove.Count > 0)
                 {
                     for (var i = 0; i < listRemove.Count; i++)
                     {
-                        ListTimers.Remove(listRemove[i]);
+                        DestroyTimer(listRemove[i]);
                     }
+
                     listRemove.Clear();
                 }
-
             }
         }
         
@@ -113,10 +123,11 @@ namespace FirstPlugin
             Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
 
             CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count); }, 0.5f);
-            ;
             for (var i = 0; i < Players.All.Count; i++)
-            { 
-                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + i + "] => [" + Players.All[i].PlayerSteamId + " / " + Players.All[i].Name + "]"); }, 1f + (0.2f * i));
+            {
+                uint streamid = Players.All[i].PlayerSteamId;
+                string name = Players.All[i].Name;
+                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + i + "] => [" + streamid + " / " + name + "]"); }, 1f + (0.2f * i));
             }
         }
     }
