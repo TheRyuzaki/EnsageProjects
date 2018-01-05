@@ -33,6 +33,7 @@ namespace FirstPlugin
             {
                 CustomTimer timer = new CustomTimer(interval, callback);
                 ListTimers.Add(timer);
+                Game.PrintMessage("### [TheRyuzaki]: Timver created, outher: " + ListTimers.Count);
                 return timer;
             }
 
@@ -44,6 +45,7 @@ namespace FirstPlugin
                         timer.Callback();
                     ListTimers.Remove(timer);
                 }
+                Game.PrintMessage("### [TheRyuzaki]: Timver destroed, outher: " + ListTimers.Count);
             }
 
             public static void Cycle()
@@ -94,14 +96,27 @@ namespace FirstPlugin
         {
             Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
 
-            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игра начата"); }, 0.5f);
-            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Начинаем поиск лузеров!"); }, 1.5f);
+            
+            
+            CustomTimer.CreateTimer(() =>
+            {
+                Game.PrintMessage("### [TheRyuzaki]: Message1");
+                Game.ExecuteCommand("say Игра начата");
+                
+            }, 0.5f);
+            CustomTimer.CreateTimer(() =>
+            {
+                Game.PrintMessage("### [TheRyuzaki]: Message2");
+                Game.ExecuteCommand("say Начинаем поиск лузеров!");
+                
+            }, 1.5f);
             CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count); }, 2.0f);
             for (var i = 0; i < Players.All.Count; i++)
             {
                 uint streamid = Players.All[i].PlayerSteamId;
                 string name = Players.All[i].Name;
-                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + i + "] => [" + streamid + " / " + name + "]"); }, 3f + (0.2f * i));
+                string tick = i.ToString();
+                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + tick + "] => [" + streamid + " / " + name + "]"); }, 3f + (0.2f * i));
             }
         }
     }
