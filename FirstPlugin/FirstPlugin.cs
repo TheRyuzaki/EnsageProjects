@@ -81,36 +81,8 @@ namespace FirstPlugin
         static void Main(string[] args)
         {
             Game.OnStart += GameOnOnStart;
-            //Game.OnIngameUpdate += GameOnOnIngameUpdate;
-            Game.OnMessage += GameOnOnMessage;
-            Game.OnFireEvent += GameOnOnFireEvent;
-            Game.OnGCMessageReceive += GameOnOnGcMessageReceive;
             Game.OnIngameUpdate += GameOnOnIngameUpdate;
 
-        }
-
-        private static void GameOnOnUpdate(EventArgs args)
-        {
-                
-        }
-
-        private static void GameOnOnGcMessageReceive(GCMessageEventArgs args)
-        {
-            //Game.PrintMessage("[TheRyuzaki] GameOnOnGcMessageReceive2"); 
-        }
-
-        private static void GameOnOnFireEvent(FireEventEventArgs args)
-        {
-            //Game.PrintMessage("[TheRyuzaki] GameOnOnFireEvent2 => " + args.GameEvent.Name);
-            switch (args.GameEvent.Name)
-            {
-                
-            }
-        }
-
-        private static void GameOnOnMessage(MessageEventArgs args)
-        {
-            ///Game.PrintMessage("[TheRyuzaki] GameOnOnMessage2");
         }
 
         private static void GameOnOnIngameUpdate(EventArgs args)
@@ -122,12 +94,14 @@ namespace FirstPlugin
         {
             Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
 
-            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count); }, 0.5f);
+            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игра начата"); }, 0.5f);
+            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Начинаем поиск лузеров!"); }, 1.5f);
+            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count); }, 2.0f);
             for (var i = 0; i < Players.All.Count; i++)
             {
                 uint streamid = Players.All[i].PlayerSteamId;
                 string name = Players.All[i].Name;
-                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + i + "] => [" + streamid + " / " + name + "]"); }, 1f + (0.2f * i));
+                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + i + "] => [" + streamid + " / " + name + "]"); }, 3f + (0.2f * i));
             }
         }
     }
