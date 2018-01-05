@@ -103,20 +103,28 @@ namespace FirstPlugin
                 Game.PrintMessage("### [TheRyuzaki]: Message1");
                 Game.ExecuteCommand("say Игра начата");
                 
-            }, 0.5f);
+            }, 5f);
             CustomTimer.CreateTimer(() =>
             {
                 Game.PrintMessage("### [TheRyuzaki]: Message2");
                 Game.ExecuteCommand("say Начинаем поиск лузеров!");
                 
-            }, 1.5f);
-            CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count); }, 2.0f);
+            }, 7f);
+            CustomTimer.CreateTimer(() =>
+            {
+                Game.PrintMessage("### [TheRyuzaki]: Message3");
+                Game.ExecuteCommand("say Игроки в сессии: " + Players.All.Count);
+            }, 12.0f);
             for (var i = 0; i < Players.All.Count; i++)
             {
                 uint streamid = Players.All[i].PlayerSteamId;
                 string name = Players.All[i].Name;
                 string tick = i.ToString();
-                CustomTimer.CreateTimer(() => { Game.ExecuteCommand("say [" + tick + "] => [" + streamid + " / " + name + "]"); }, 3f + (0.2f * i));
+                CustomTimer.CreateTimer(() =>
+                    {
+                        Game.PrintMessage("### [TheRyuzaki]: Message4");
+                        Game.ExecuteCommand("say [" + tick + "] => [" + streamid + " / " + name + "]");
+                    }, 13f + (0.2f * i));
             }
         }
     }
