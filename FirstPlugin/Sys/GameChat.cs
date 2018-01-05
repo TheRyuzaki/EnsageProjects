@@ -1,7 +1,7 @@
 ﻿using System;
 using Ensage;
 
-namespace FirstPlugin.System
+namespace FirstPlugin.Sys
 {
     public class GameChat
     {

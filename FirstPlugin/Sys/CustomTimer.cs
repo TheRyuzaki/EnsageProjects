@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Ensage;
 
-namespace FirstPlugin.System
+namespace FirstPlugin.Sys
 {
     public class CustomTimer
         {

@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="FirstPlugin.cs" />
-    <Compile Include="System\CustomTimer.cs" />
-    <Compile Include="System\GameChat.cs" />
+    <Compile Include="Sys\CustomTimer.cs" />
+    <Compile Include="Sys\CustomWebClient.cs" />
+    <Compile Include="Sys\DotaBuffPlayer.cs" />
+    <Compile Include="Sys\GameChat.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ability.Core, Version=1.0.0.5, Culture=neutral, PublicKeyToken=null">
@@ -97,7 +99,9 @@
     <Reference Include="SharpDX.XInput, Version=3.1.0.0, Culture=neutral, PublicKeyToken=7e3dc52b16ce4f66">
       <HintPath>D:\Program Files (x86)\Ensage\References\SharpDX.XInput.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Net" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
