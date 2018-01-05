@@ -16,7 +16,7 @@ namespace FirstPlugin
     {
         public class CustomTimer
         {
-            public static Stack<CustomTimer> listRemove = new Stack<CustomTimer>();
+            public static List<CustomTimer> listRemove = new List<CustomTimer>();
             public static List<CustomTimer> ListTimers = new List<CustomTimer>();
             public static DateTime LastCycle = DateTime.Now;
             
@@ -51,15 +51,20 @@ namespace FirstPlugin
                     if (ListTimers[i].Interval <= 0)
                     {
                         ListTimers[i]?.Callback();
-                        listRemove.Push(ListTimers[i]);
+                        listRemove.Add(ListTimers[i]);
                     }
                 }
 
-                while (listRemove.Count != 0)
+
+                if (listRemove.Count > 0)
                 {
-                    var obj = listRemove.Pop();
-                    DestroyTimer(obj);
+                    for (var i = 0; i < listRemove.Count; i++)
+                    {
+                        ListTimers.Remove(listRemove[i]);
+                    }
+                    listRemove.Clear();
                 }
+
             }
         }
         
