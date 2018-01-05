@@ -41,17 +41,17 @@ namespace FirstPlugin
 
         private static void GameOnOnIngameUpdate(EventArgs args)
         {
-            //Game.ExecuteCommand("say GameOnOnIngameUpdate");
+            //Game.PrintMessage("[TheRyuzaki] GameOnOnIngameUpdate");
         }
 
         private static void GameOnOnStart(EventArgs args)
         {
             Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
-            Game.ExecuteCommand("say Игроки в сессии3:");
+            Game.PrintMessage("[TheRyuzaki] Игроки в сессии3:");
             Thread.Sleep(200);
             for (var i = 0; i < Players.All.Count; i++)
             {
-                Game.ExecuteCommand("say [" + i + "] => [" + Players.All[i].PlayerSteamId + " / " + Players.All[i].Name + "]");
+                Game.PrintMessage("[TheRyuzaki] [" + i + "] => [" + Players.All[i].PlayerSteamId + " / " + Players.All[i].Name + "]");
                 Thread.Sleep(200);
             }
         }
