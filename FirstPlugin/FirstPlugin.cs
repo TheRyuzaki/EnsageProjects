@@ -34,11 +34,13 @@ namespace FirstPlugin
                     {
                         case GameState.GameInProgress:
                             Game.PrintMessage("[TheRyuzaki] GameInProgress2");
-                            Game.ExecuteCommand("say Игроки в сессии:");
-                            for (var i = 0; i < Players.All.Count; i++)
-                            {
-                                Game.ExecuteCommand("say [" + i + "] => [" + Players.All[i].PlayerSteamId + " / " + Players.All[i].Name + "]");
-                            }
+                            Game.ExecuteCommand("say Игроки в сессии2: " + Players.All.Count);
+                            Game.ExecuteCommand("say Игроки в сессии2: " + Players.Dire.Count);
+                            Game.ExecuteCommand("say Игроки в сессии2: " + Players.Radiant.Count);
+                            
+                            Game.ExecuteCommand("say Героев2: " + Heroes.All.Count);
+                            Game.ExecuteCommand("say Героев2: " + Heroes.Dire.Count);
+                            Game.ExecuteCommand("say Героев2: " + Heroes.Radiant.Count);
                             break;
                     }
                     break;
@@ -60,11 +62,13 @@ namespace FirstPlugin
         private static void GameOnOnStart(EventArgs args)
         {
             Game.PrintMessage("[TheRyuzaki] GameOnOnStart2");
-            Game.ExecuteCommand("say Игроки в сессии:");
-            for (var i = 0; i < Players.All.Count; i++)
-            {
-                Game.ExecuteCommand("say [" + i + "] => [" + Players.All[i].PlayerSteamId + " / " + Players.All[i].Name + "]");
-            }
+            Game.ExecuteCommand("say Игроки в сессии3: " + Players.All.Count);
+            Game.ExecuteCommand("say Игроки в сессии3: " + Players.Dire.Count);
+            Game.ExecuteCommand("say Игроки в сессии3: " + Players.Radiant.Count);
+                            
+            Game.ExecuteCommand("say Героев3: " + Heroes.All.Count);
+            Game.ExecuteCommand("say Героев3: " + Heroes.Dire.Count);
+            Game.ExecuteCommand("say Героев3: " + Heroes.Radiant.Count);
         }
     }
 }
