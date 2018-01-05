@@ -33,7 +33,7 @@ namespace FirstPlugin
             {
                 CustomTimer timer = new CustomTimer(interval, callback);
                 ListTimers.Add(timer);
-                Game.PrintMessage("### [TheRyuzaki]: Timver created, outher: " + ListTimers.Count);
+                Game.PrintMessage("### [TheRyuzaki]: Timver created: "+timer.Interval+", outher: " + ListTimers.Count);
                 return timer;
             }
 
@@ -59,6 +59,7 @@ namespace FirstPlugin
                         try
                         {
                             ListTimers[i].Callback();
+                            Game.PrintMessage("[TheRyuzaki]: Timer tick: " + deltatime);
                         }
                         catch (Exception ex)
                         {
