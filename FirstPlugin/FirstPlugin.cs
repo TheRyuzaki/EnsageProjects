@@ -1,7 +1,8 @@
 ﻿using System;
 using Ensage;
 using Ensage.SDK.Service;
-using Ensage.SDK.Service.Metadata;
+
+using SharpDX;
 
 namespace FirstPlugin
 {
@@ -12,7 +13,26 @@ namespace FirstPlugin
             Game.OnStart += GameOnOnStart;
             //Game.OnIngameUpdate += GameOnOnIngameUpdate;
             Game.OnMessage += GameOnOnMessage;
+            Game.OnFireEvent += GameOnOnFireEvent;
+            Game.OnGCMessageReceive += GameOnOnGcMessageReceive;
+            Game.OnWndProc += GameOnOnWndProc;
             Game.PrintMessage("Hello world");
+            
+        }
+
+        private static void GameOnOnWndProc(WndEventArgs args)
+        {
+            Game.ExecuteCommand("say GameOnOnWndProc");
+        }
+
+        private static void GameOnOnGcMessageReceive(GCMessageEventArgs args)
+        {
+            Game.ExecuteCommand("say GameOnOnGcMessageReceive");
+        }
+
+        private static void GameOnOnFireEvent(FireEventEventArgs args)
+        {
+            Game.ExecuteCommand("say GameOnOnFireEvent");
         }
 
         private static void GameOnOnMessage(MessageEventArgs args)
